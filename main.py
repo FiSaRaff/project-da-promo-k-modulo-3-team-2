@@ -1,5 +1,7 @@
 from src import soporte as sp
 from src import variables as va
+from src import soporte_queries_creacion_BDD as query
+from src import bdd_soporte as bdd
 import pandas as pd
 
 df = pd.read_csv("data/hr_raw_data_final.csv", index_col=0)
@@ -82,4 +84,3 @@ df=df[va.new_order]
 df.columns = ['employee_number','attrition','job_level', 'job_role','department','monthly_income','salary','percent_salary_hike','training_times_last_year','stock_option_level','hourly_rate','daily_rate','monthly_rate','standard_hours','overtime','business_travel','distance_from_home','remote_work','environment_satisfaction','job_involvement','job_satisfaction','performance_rating','relationship_satisfaction','work_life_balance','date_birth','age','gender','marital_status','education', 'education_field','num_companies_worked','total_working_years','years_at_company','years_since_last_promotion','years_with_curr_manager']
 
 df.to_csv("data/hr_raw_data_definitivo.csv")
-
