@@ -128,6 +128,34 @@ def replace_dot(column):
         # Si ocurre algún error (por ejemplo, si el argumento no es una cadena)
         return np.nan
     
+def replace_dot_worklikebalance(column):
+    '''
+    Converts a string representing a monetary value with commas and a dollar sign into a float.
+
+    This function is intended to process columns of type 'object' where the values are monetary 
+    amounts formatted with commas as decimal separators, and a dollar sign ('$') at the end. 
+    It performs the following transformations:
+    
+    - Replaces commas (',') with periods ('.') for correct decimal notation.
+    - Removes the dollar sign ('$').
+    - Converts the resulting string into a float.
+
+    If the input is not a valid monetary string or cannot be converted, the function returns `np.nan`.
+
+    Args:
+        cadena (str): A string representing a monetary value, with commas as decimal separators 
+                      and a dollar sign ('$') at the end, e.g., "$1,234.56".
+
+    Returns:
+        float: The monetary value as a float, or `np.nan` if the conversion fails or the input is invalid.'''
+    try:
+        # Reemplazar las comas por puntos en la cadena
+        return float(column.replace(",", "."))
+    
+    except:
+        # Si ocurre algún error (por ejemplo, si el argumento no es una cadena)
+        return np.nan
+    
 def clean_satisfaction(valoration):
     '''
     Cleans and standardizes a satisfaction score.

@@ -19,5 +19,4 @@ dict_department = {'healthcare representative': 'research & development',
 
 list_drop = ["sameasmonthlyincome", "over18", "numberchildren", "employeecount", "yearsincurrentrole", "roledepartament", "department"]
 
-
 new_order = ['employeenumber','attrition','joblevel', 'jobrole','department','monthlyincome','salary','percentsalaryhike','trainingtimeslastyear','stockoptionlevel','hourlyrate','dailyrate','monthlyrate','standardhours','overtime','businesstravel','distancefromhome','remotework','environmentsatisfaction','jobinvolvement','jobsatisfaction','performancerating','relationshipsatisfaction','worklifebalance','datebirth','age','gender','maritalstatus','education', 'educationfield','numcompaniesworked','totalworkingyears','yearsatcompany','yearssincelastpromotion','yearswithcurrmanager']

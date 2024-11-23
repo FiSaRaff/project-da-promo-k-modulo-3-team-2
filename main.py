@@ -2,7 +2,7 @@ from src import soporte as sp
 from src import variables as va
 import pandas as pd
 
-df = pd.read_csv("../pr_raw_data_prueba.csv", index_col=0)
+df = pd.read_csv("data/hr_raw_data_final.csv", index_col=0)
 
 print("se procede a hacer exploración del dataframe")
 sp.exploracion(df)
@@ -14,6 +14,8 @@ print("se corrige la columna de age")
 df["age"] = sp.age(df["datebirth"])
 
 print("se corrigen las columnas cuyos valores tienen ',' en vez de '.' y terminan en $")
+
+sp.replace_dot_worklikebalance("worklifebalance")
 
 for columna in va.list_column_dot:
      df[columna] = df[columna].apply(sp.replace_dot)
@@ -65,6 +67,9 @@ print("eliminamos las columnas que no dan información, están repetidas o no se
 for column in va.list_drop:
     sp.drop_column(df,column)
 
+mediana_worlifebalance = df["worklifebalance"].median()
+df["worklifebalance"] = df["worklifebalance"].fillna(mediana_worlifebalance)
+
 print("renombramos la columna nueva de departamentos")
 df.rename(columns={'correct_department': 'department'}, inplace=True)
 
@@ -76,5 +81,5 @@ print("cambiamos el orden de las columnas y el nombre")
 df=df[va.new_order]
 df.columns = ['employee_number','attrition','job_level', 'job_role','department','monthly_income','salary','percent_salary_hike','training_times_last_year','stock_option_level','hourly_rate','daily_rate','monthly_rate','standard_hours','overtime','business_travel','distance_from_home','remote_work','environment_satisfaction','job_involvement','job_satisfaction','performance_rating','relationship_satisfaction','work_life_balance','date_birth','age','gender','marital_status','education', 'education_field','num_companies_worked','total_working_years','years_at_company','years_since_last_promotion','years_with_curr_manager']
 
-df.to_csv("../pr_raw_data_comprobado.csv")
+df.to_csv("data/hr_raw_data_definitivo.csv")
 
