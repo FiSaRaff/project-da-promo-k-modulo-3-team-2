@@ -1,7 +1,8 @@
+#%%
 from src import soporte_queries_creacion_BDD as query
 from src import bdd_soporte as bdd
 import pandas as pd
-
+#%%
 # Creación de base de datos y tablas
 bdd.creacion_bbdd_tablas(query.query_creacion_bdd, 'admin')
 bdd.creacion_bbdd_tablas(query.query_creacion_tabla_education_employee_level, 'admin', 'human_resources_ABC_corporation')
@@ -12,7 +13,7 @@ bdd.creacion_bbdd_tablas(query.query_creacion_tabla_working_conditions, 'admin',
 bdd.creacion_bbdd_tablas(query.query_creacion_tabla_employee_satisfaction, 'admin', 'human_resources_ABC_corporation')
 bdd.creacion_bbdd_tablas(query.query_creacion_tabla_jobrole_information, 'admin', 'human_resources_ABC_corporation')
 bdd.creacion_bbdd_tablas(query.query_creacion_tabla_salary_information, 'admin', 'human_resources_ABC_corporation')
-
+#%%
 # Lectura del csv para la carga de datos en la BDD
 dfcarga = pd.read_csv("data/hr_raw_data_definitivo.csv", index_col=0)
 dfcarga.head()
@@ -61,29 +62,29 @@ datos_tabla_salary_information = list(set(zip(dfcarga['monthly_income'].values, 
 # Insertar los datos
 
 # Insertar datos en TABLA education_employee_level
-bdd.insertar_datos(query.query_insertar_education_employee_level, "admin", "spotify_f", datos_tabla_education_employee_level)
+bdd.insertar_datos(query.query_insertar_education_employee_level, "admin", 'human_resources_ABC_corporation', datos_tabla_education_employee_level)
 
 # Insertar datos en TABLA gender
-bdd.insertar_datos(query.query_insertar_gender, "admin", "spotify_f", datos_tabla_gender)
+bdd.insertar_datos(query.query_insertar_gender, "admin", 'human_resources_ABC_corporation' datos_tabla_gender)
 
 # Insertar datos en TABLA marital_status
-bdd.insertar_datos(query.query_insertar_marital_status, "admin", "spotify_f", datos_tabla_marital_status)
+bdd.insertar_datos(query.query_insertar_marital_status, "admin", 'human_resources_ABC_corporation', datos_tabla_marital_status)
 
 # Insertar datos en TABLA personal_information
-bdd.insertar_datos(query.query_insertar_personal_information, "admin", "spotify_f", datos_tabla_personal_information)
+bdd.insertar_datos(query.query_insertar_personal_information, "admin", 'human_resources_ABC_corporation', datos_tabla_personal_information)
 
 # Insertar datos en TABLA work_experience
-bdd.insertar_datos(query.query_insertar_work_experience, "admin", "spotify_f", datos_tabla_work_experience)
+bdd.insertar_datos(query.query_insertar_work_experience, "admin", 'human_resources_ABC_corporation', datos_tabla_work_experience)
 
 # Insertar datos en TABLA working_conditions
-bdd.insertar_datos(query.query_insertar_working_conditions, "admin", "spotify_f", datos_tabla_working_conditions)
+bdd.insertar_datos(query.query_insertar_working_conditions, "admin", 'human_resources_ABC_corporation', datos_tabla_working_conditions)
 
 # Insertar datos en TABLA employee_satisfaction
-bdd.insertar_datos(query.query_insertar_employee_satisfaction, "admin", "spotify_f", datos_tabla_employee_satisfaction)
+bdd.insertar_datos(query.query_insertar_employee_satisfaction, "admin", 'human_resources_ABC_corporation', datos_tabla_employee_satisfaction)
 
 # Insertar datos en TABLA jobrole_information
-bdd.insertar_datos(query.query_insertar_jobrole_information, "admin", "spotify_f", datos_tabla_jobrole_information)
+bdd.insertar_datos(query.query_insertar_jobrole_information, "admin", 'human_resources_ABC_corporation', datos_tabla_jobrole_information)
 
 # Insertar datos en TABLA salary_information
-bdd.insertar_datos(query.query_insertar_salary_information, "admin", "spotify_f", datos_tabla_salary_information)
+bdd.insertar_datos(query.query_insertar_salary_information, "admin",'human_resources_ABC_corporation', datos_tabla_salary_information)
 

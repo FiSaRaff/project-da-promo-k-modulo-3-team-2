@@ -1,21 +1,21 @@
-query_creacion_bdd = "CREATE DATABASE human_resources_ABC_corporation;"
+query_creacion_bdd = "CREATE SCHEMA IF NOT EXISTS `human_resources_ABC_corporation`;"
 
-query_creacion_tabla_education_employee_level = """CREATE TABLE education_employee_level (
+query_creacion_tabla_education_employee_level = """CREATE TABLE IF NOT EXISTS `human_resources_ABC_corporation`.`education_employee_level` (
                                                         education_level INT AUTO_INCREMENT NOT NULL UNIQUE COMMENT 'nivel de estudios',
                                                         education VARCHAR (50) COMMENT 'Level 1 - Basic Education\nLevel 2 - Secondary Education\nLevel 3 - Technical or Vocational Education\nLevel 4 - University Education\nLevel 5 - Graduate Education',
                                                         PRIMARY KEY (education_level));"""
 
-query_creacion_tabla_gender = """CREATE TABLE gender(
+query_creacion_tabla_gender = """CREATE TABLE IF NOT EXISTS `human_resources_ABC_corporation`.`gender`(
                                     id_gender VARCHAR (5) NOT NULL UNIQUE COMMENT 'género',
                                     gender_description VARCHAR (50) COMMENT 'F : Female , M : Male',
                                     PRIMARY KEY (id_gender));"""
 
-query_creacion_tabla_marital_status = """CREATE TABLE marital_status (
+query_creacion_tabla_marital_status = """CREATE TABLE IF NOT EXISTS `human_resources_ABC_corporation`.`marital_status` (
                                             id_marital_status INT AUTO_INCREMENT NOT NULL UNIQUE COMMENT 'Estado civil',
                                             marital_status_description VARCHAR (50) COMMENT 'Married, Divorced, Single',
                                             PRIMARY KEY (id_marital_status));"""
 
-query_creacion_tabla_personal_information = """CREATE TABLE personal_information (
+query_creacion_tabla_personal_information = """CREATE TABLE IF NOT EXISTS `human_resources_ABC_corporation`.`personal_information` (
                                                 id_employee_number INT NOT NULL UNIQUE,
                                                 first_name VARCHAR (50),
                                                 last_name VARCHAR (50),
@@ -42,7 +42,7 @@ query_creacion_tabla_personal_information = """CREATE TABLE personal_information
                                                         ON DELETE CASCADE 
                                                         ON UPDATE CASCADE);"""
 
-query_creacion_tabla_work_experience = """CREATE TABLE work_experience (
+query_creacion_tabla_work_experience = """CREATE TABLE IF NOT EXISTS `human_resources_ABC_corporation`.`work_experience` (
                                             id_employee_number INT NOT NULL UNIQUE,
                                             num_companies_worked INT COMMENT 'número de empresas en las que ha trabajado',
                                             total_working_years INT COMMENT 'Años de experiencia',
@@ -57,7 +57,7 @@ query_creacion_tabla_work_experience = """CREATE TABLE work_experience (
                                                     ON DELETE CASCADE 
                                                     ON UPDATE CASCADE);""" 
 
-query_creacion_tabla_working_conditions = """CREATE TABLE working_conditions (
+query_creacion_tabla_working_conditions = """CREATE TABLE IF NOT EXISTS `human_resources_ABC_corporation`.`working_conditions` (
                                                 id_employee_number INT NOT NULL UNIQUE,
                                                 standard_hours VARCHAR(45) COMMENT 'jornada de trabajo : Full Time, Part Time',
                                                 overtime VARCHAR(45) COMMENT 'Indica si el trabajo hace horas extras: Yes, No',
@@ -71,7 +71,7 @@ query_creacion_tabla_working_conditions = """CREATE TABLE working_conditions (
                                                         ON DELETE CASCADE 
                                                         ON UPDATE CASCADE);"""
 
-query_creacion_tabla_employee_satisfaction = """CREATE TABLE employee_satisfaction (
+query_creacion_tabla_employee_satisfaction = """CREATE TABLE IF NOT EXISTS `human_resources_ABC_corporation`.`employee_satisfaction` (
                                                     id_employee_number INT NOT NULL UNIQUE,
                                                     environment_satisfaction INT COMMENT 'Nivel de satisfacción del empleado: 1-2-3-4',
                                                     job_satisfaction INT COMMENT 'Nivel de satisfacción en el trabajo: 1-2-3-4',
@@ -87,7 +87,7 @@ query_creacion_tabla_employee_satisfaction = """CREATE TABLE employee_satisfacti
                                                         ON DELETE CASCADE 
                                                         ON UPDATE CASCADE);"""
 
-query_creacion_tabla_jobrole_information = """CREATE TABLE jobrole_information (
+query_creacion_tabla_jobrole_information = """CREATE TABLE IF NOT EXISTS `human_resources_ABC_corporation`.`jobrole_information` (
                                                 id_employee_number INT NOT NULL UNIQUE,
                                                 job_level INT COMMENT 'Nivel jerárquico : 1, 2, 3, 4, 5',
                                                 job_role VARCHAR(100) COMMENT 'Puesto que ocupa',
@@ -99,7 +99,7 @@ query_creacion_tabla_jobrole_information = """CREATE TABLE jobrole_information (
                                                     ON DELETE CASCADE 
                                                     ON UPDATE CASCADE);"""
 
-query_creacion_tabla_salary_information = """CREATE TABLE salary_information (
+query_creacion_tabla_salary_information = """CREATE TABLE IF NOT EXISTS `human_resources_ABC_corporation`.`salary_information (
                                                 id_employee_number INT NOT NULL UNIQUE,
                                                 monthly_income FLOAT COMMENT 'Ingresos mensuales',
                                                 percent_salary_hike INT COMMENT '% de aumento de salario\n',
