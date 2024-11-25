@@ -99,7 +99,7 @@ query_creacion_tabla_jobrole_information = """CREATE TABLE IF NOT EXISTS `human_
                                                     ON DELETE CASCADE 
                                                     ON UPDATE CASCADE);"""
 
-query_creacion_tabla_salary_information = """CREATE TABLE IF NOT EXISTS `human_resources_ABC_corporation`.`salary_information (
+query_creacion_tabla_salary_information = """CREATE TABLE IF NOT EXISTS `human_resources_ABC_corporation`.`salary_information` (
                                                 id_employee_number INT NOT NULL UNIQUE,
                                                 monthly_income FLOAT COMMENT 'Ingresos mensuales',
                                                 percent_salary_hike INT COMMENT '% de aumento de salario\n',
@@ -122,7 +122,7 @@ query_insertar_marital_status = "INSERT INTO marital_status (id_marital_status, 
 
 query_insertar_personal_information = "INSERT INTO personal_information (id_employee_number, first_name, last_name, birth_date, id_gender, id_marital_status, number_children, education_level, education_field) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
-query_insertar_work_experience = "INSERT INTO work_experiencen (id_employee_number, num_companies_worked, total_working_years, years_at_company, years_since_las_promotion, years_in_current_role, years_with_currmanager) VALUES (%s, %s, %s, %s, %s, %s, %s)"
+query_insertar_work_experience = "INSERT INTO work_experience (id_employee_number, num_companies_worked, total_working_years, years_at_company, years_since_las_promotion, years_in_current_role, years_with_currmanager) VALUES (%s, %s, %s, %s, %s, %s, %s)"
 
 query_insertar_working_conditions = "INSERT INTO working_conditions (id_employee_number, standard_hours, overtime, business_travel, distance_from_home , remote_work) VALUES (%s, %s, %s, %s, %s, %s)"
 

@@ -243,7 +243,7 @@ def fill_null(df,column, concept):
     df[column] = df[column].fillna(concept)
     return 
 
-def marital_status(value):
+def marital_status(dataframe, column, value):
     
     '''Corrects and standardizes marital status values.
 
@@ -260,10 +260,12 @@ def marital_status(value):
     try:
         if value == 'Marreid':
             return value.rename(columns= {'Marreid': 'married'})
+
         else:
             return str(value).lower()
     except:
-        return np.nan 
+        dataframe[column] = dataframe[column].fillna("other")
+        return 
 
 def assign_departament(dataframe, rolejob, dict_department, column_roledepartment):
     # Limpiamos la columna 'jobrole' de espacios y le hacemos un lower, ya que no estaba reconociendo las claves y es posible que hubiera algún espacio

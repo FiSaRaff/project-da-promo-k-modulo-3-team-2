@@ -57,7 +57,6 @@ print("después de preguntar y confirmar los nulos de 2 columnas lo cambiamos po
 sp.fill_null(df, "businesstravel", "non-travel")
 sp.fill_null(df, "standardhours", "Full Time")
 sp.fill_null(df, "performancerating", "not rated")
-sp.fill_null(df, "maritalstatus", "unknown")
 
 print("redondeamos el contenido de las columnas con valores económicos")
 for column in va.list_round:
