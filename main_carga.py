@@ -101,13 +101,37 @@ for t in datos_tabla_work_experience:
             tupla_consumible.append(dato)
     nueva_lista_workexperience.append(tuple(tupla_consumible))
 #%%
-print(nueva_lista_workexperience)
+
 #%%
 # TABLA working_conditions
 datos_tabla_working_conditions = list(set(zip(dfcarga['employee_number'].values, dfcarga['standard_hours'].values, dfcarga['overtime'].values, dfcarga['business_travel'].values, dfcarga['distance_from_home'].values, dfcarga['remote_work'].values))) 
 #%%
+nueva_lista_workconditions=[]
+for t in datos_tabla_working_conditions:
+    tupla_consumible= []
+    for dato in t:
+        try:
+            tupla_consumible.append(int(dato))
+        except:
+            tupla_consumible.append(dato)
+    nueva_lista_workconditions.append(tuple(tupla_consumible))
+#%%
+print(nueva_lista_workconditions)
+#%%
 # TABLA employee_satisfaction
 datos_tabla_employee_satisfaction = list(set(zip(dfcarga['employee_number'].values, dfcarga['environment_satisfaction'].values, dfcarga['job_satisfaction'].values, dfcarga['performance_rating'].values, dfcarga['relationship_satisfaction'].values, dfcarga['work_life_balance'].values, dfcarga['job_involvement'], dfcarga['attrition'].values))) 
+#%%
+nueva_lista_satisfaction=[]
+for t in datos_tabla_employee_satisfaction:
+    tupla_consumible= []
+    for dato in t:
+        try:
+            tupla_consumible.append(int(dato))
+        except:
+            tupla_consumible.append(dato)
+    nueva_lista_satisfaction.append(tuple(tupla_consumible))
+#%%
+print(nueva_lista_satisfaction)
 #%%
 # TABLA jobrole_information
 datos_tabla_jobrole_information = list(set(zip(dfcarga['employee_number'].values, dfcarga['job_role'].values, dfcarga['department'].values))) 
@@ -135,11 +159,11 @@ bdd.insertar_datos(query.query_insertar_personal_information, "Mysql.2440", 'hum
 bdd.insertar_datos(query.query_insertar_work_experience, "Mysql.2440", 'human_resources_ABC_corporation', nueva_lista_workexperience)
 #%%
 # Insertar datos en TABLA working_conditions
-bdd.insertar_datos(query.query_insertar_working_conditions, "Mysql.2440", 'human_resources_ABC_corporation', datos_tabla_working_conditions)
-
+bdd.insertar_datos(query.query_insertar_working_conditions, "Mysql.2440", 'human_resources_ABC_corporation', nueva_lista_workconditions)
+#%%
 # Insertar datos en TABLA employee_satisfaction
-bdd.insertar_datos(query.query_insertar_employee_satisfaction, "Mysql.2440", 'human_resources_ABC_corporation', datos_tabla_employee_satisfaction)
-
+bdd.insertar_datos(query.query_insertar_employee_satisfaction, "Mysql.2440", 'human_resources_ABC_corporation', nueva_lista_satisfaction)
+#%%
 # Insertar datos en TABLA jobrole_information
 bdd.insertar_datos(query.query_insertar_jobrole_information, "Mysql.2440", 'human_resources_ABC_corporation', datos_tabla_jobrole_information)
 

@@ -112,3 +112,51 @@ def insertar_datos(query, contraseña, nombre_bdd, lista_tuplas):
         print("SQLSTATE", err.sqlstate)
         print("Message", err.msg)
         cnx.close()
+
+def convertir_float(lista_tuplas):
+    """
+    Convierte los elementos de una lista de tuplas a float cuando sea posible.
+
+    Args:
+    - lista_tuplas (list): Una lista que contiene tuplas con elementos que pueden ser convertidos a float.
+
+    Returns:
+    - list: Una nueva lista con las mismas tuplas de entrada, pero con los elementos convertidos a float si es posible.
+    """
+    datos_tabla_caract_def = []
+    
+    for tupla in lista_tuplas:
+        lista_intermedia = []
+        for elemento in tupla:
+            try:
+                lista_intermedia.append(float(elemento))
+            except:
+                lista_intermedia.append(elemento)
+            
+        datos_tabla_caract_def.append(tuple(lista_intermedia))
+    
+    return datos_tabla_caract_def
+
+def convertir_int(lista_tuplas):
+    """
+    Convierte los elementos de una lista de tuplas a int cuando sea posible.
+
+    Args:
+    - lista_tuplas (list): Una lista que contiene tuplas con elementos que pueden ser convertidos a int.
+
+    Returns:
+    - list: Una nueva lista con las mismas tuplas de entrada, pero con los elementos convertidos a int si es posible.
+    """
+    datos_tabla_caract_def = []
+    
+    for tupla in lista_tuplas:
+        lista_intermedia = []
+        for elemento in tupla:
+            try:
+                lista_intermedia.append(int(elemento))
+            except:
+                lista_intermedia.append(elemento)
+            
+        datos_tabla_caract_def.append(tuple(lista_intermedia))
+    
+    return datos_tabla_caract_def
