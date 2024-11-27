@@ -3,6 +3,7 @@
 # Importar librerías para manipulación y análisis de datos
 # -----------------------------------------------------------------------
 from ast import literal_eval
+import pandas as pd
 
 import mysql.connector
 
@@ -130,7 +131,7 @@ def convertir_float(lista_tuplas):
         for elemento in tupla:
             try:
                 lista_intermedia.append(float(elemento))
-            except:
+            except (ValueError, TypeError):  # Si no puede convertir, deja el valor original
                 lista_intermedia.append(elemento)
             
         datos_tabla_caract_def.append(tuple(lista_intermedia))
@@ -148,15 +149,32 @@ def convertir_int(lista_tuplas):
     - list: Una nueva lista con las mismas tuplas de entrada, pero con los elementos convertidos a int si es posible.
     """
     datos_tabla_caract_def = []
-    
+
     for tupla in lista_tuplas:
         lista_intermedia = []
         for elemento in tupla:
             try:
                 lista_intermedia.append(int(elemento))
-            except:
+            except (ValueError, TypeError):  # Si no puede convertir, deja el valor original
                 lista_intermedia.append(elemento)
             
         datos_tabla_caract_def.append(tuple(lista_intermedia))
     
     return datos_tabla_caract_def
+
+def convertir_int64_a_int(df):
+    """
+    Convierte todas las columnas de tipo 'int64' en el DataFrame a 'int' de Python.
+
+    Args:
+    - df (pd.DataFrame): El DataFrame con las columnas que pueden tener tipo 'int64'.
+
+    Returns:
+    - pd.DataFrame: El DataFrame con las columnas 'int64' convertidas a 'int' de Python.
+    """
+    # Seleccionar las columnas de tipo 'int64'
+    for col in df.select_dtypes(include=['int64']).columns:
+        # Convertir cada columna 'int64' a 'int' de Python
+        df[col] = df[col].astype(int)
+    
+    return df

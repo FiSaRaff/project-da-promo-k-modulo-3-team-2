@@ -25,6 +25,7 @@ query_creacion_tabla_personal_information = """CREATE TABLE IF NOT EXISTS `human
                                                 number_children INT COMMENT 'número de hijos',
                                                 education_level INT COMMENT 'nivel de estudios',
                                                 education_field VARCHAR (80) COMMENT 'rama educativa',
+                                                attrition VARCHAR(45) COMMENT 'Indica si el empleado ha dejado la empresa: Yes, No',
                                                 PRIMARY KEY (id_employee_number),
                                                 CONSTRAINT fk_personal_information_gender
                                                         FOREIGN KEY (id_gender)
@@ -75,11 +76,10 @@ query_creacion_tabla_employee_satisfaction = """CREATE TABLE IF NOT EXISTS `huma
                                                     id_employee_number INT NOT NULL UNIQUE,
                                                     environment_satisfaction INT COMMENT 'Nivel de satisfacción del empleado: 1-2-3-4',
                                                     job_satisfaction INT COMMENT 'Nivel de satisfacción en el trabajo: 1-2-3-4',
-                                                    performance_rating INT COMMENT 'calificación de rendimiento: 3-4',
+                                                    performance_rating FLOAT COMMENT 'calificación de rendimiento: 3-4',
                                                     relationship_satisfaction INT COMMENT 'Nivel de satisfaccion en las relaciones interpersonales: 1-2-3-4',
                                                     work_life_balance FLOAT COMMENT 'Equilibrio en trabajo y vida personal: 1-2-3-4',
                                                     job_involvement INT COMMENT 'Nivel implicación del empleado con la empresa: 1-2-3-4',
-                                                    attrition VARCHAR(45) COMMENT 'Indica si el empleado ha dejado la empresa: Yes, No',
                                                     PRIMARY KEY (id_employee_number),
                                                     CONSTRAINT fk_employee_satisfaction_personal_information
                                                         FOREIGN KEY (id_employee_number)
@@ -120,13 +120,13 @@ query_insertar_gender = "INSERT INTO gender (id_gender, gender_description ) VAL
 
 query_insertar_marital_status = "INSERT INTO marital_status (id_marital_status, marital_status_description ) VALUES (%s, %s)"
 
-query_insertar_personal_information = "INSERT INTO personal_information (id_employee_number, first_name, last_name, birth_date, id_gender, id_marital_status, number_children, education_level, education_field) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)"
+query_insertar_personal_information = "INSERT INTO personal_information (id_employee_number, first_name, last_name, birth_date, id_gender, id_marital_status, number_children, education_level, education_field, attrition) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
 
 query_insertar_work_experience = "INSERT INTO work_experience (id_employee_number, num_companies_worked, total_working_years, years_at_company, years_since_las_promotion, years_in_current_role, years_with_currmanager) VALUES (%s, %s, %s, %s, %s, %s, %s)"
 
 query_insertar_working_conditions = "INSERT INTO working_conditions (id_employee_number, standard_hours, overtime, business_travel, distance_from_home , remote_work) VALUES (%s, %s, %s, %s, %s, %s)"
 
-query_insertar_employee_satisfaction = "INSERT INTO employee_satisfaction (id_employee_number, environment_satisfaction, job_satisfaction, performance_rating, relationship_satisfaction, work_life_balance, job_involvement, attrition) VALUES (%s, %s, %s, %s, %s, %s, %s, %s)"
+query_insertar_employee_satisfaction = "INSERT INTO employee_satisfaction (id_employee_number, environment_satisfaction, job_satisfaction, performance_rating, relationship_satisfaction, work_life_balance, job_involvement) VALUES (%s, %s, %s, %s, %s, %s, %s)"
 
 query_insertar_jobrole_information = "INSERT INTO jobrole_information (id_employee_number, job_level, job_role, department) VALUES (%s, %s, %s, %s)"
 

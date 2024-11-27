@@ -27,18 +27,17 @@ bdd.creacion_bbdd_tablas(query.query_creacion_tabla_salary_information, 'Mysql.2
 #%%
 # Lectura del csv para la carga de datos en la BDD
 dfcarga = pd.read_csv("data/hr_raw_data_definitivo.csv", index_col=0)
-dfcarga.head()
+
 #%%
 # Cambiamos Married por 1, Divorced por 2, Single por 3 y convertivos el dato en float
 dict_mstatus = {'married':'1', 'divorced':'2', 'single':'3'}
 dfcarga['marital_status'] = dfcarga['marital_status'].map(dict_mstatus).astype(float)
-#%%
+
+
 #añadimos las columnas nuevas y las que borramos y ahora necesitamos
 dfcarga['first_name'] = "unknown"
 dfcarga['last_name'] = "unknown"
 dfcarga['number_children'] = None
-dfcarga['years_in_current_role'] = None
-
 #%%
 # Crear las listas de tuplas con la información 
 
@@ -53,10 +52,10 @@ datos_tabla_marital_status = [(1,'Married'),(2,'Divorced'),(3,'Single')]
 #%%
 # TABLA personal_information
 
-datos_tabla_personal_information = list(set(zip(dfcarga['employee_number'].values, dfcarga['first_name'].values, dfcarga['last_name'].values, dfcarga['date_birth'].values, dfcarga['gender'].values, dfcarga['marital_status'].values,dfcarga['number_children'].values, dfcarga['education'].values, dfcarga['education_field'].values))) 
+datos_tabla_personal_information = list(set(zip(dfcarga['employee_number'].values, dfcarga['first_name'].values, dfcarga['last_name'].values, dfcarga['date_birth'].values, dfcarga['gender'].values, dfcarga['marital_status'].values,dfcarga['number_children'].values, dfcarga['education'].values, dfcarga['education_field'].values, dfcarga['attrition'].values))) 
 print(datos_tabla_personal_information)
 #%%
-nueva_lista=[]
+nueva_lista_personal_information=[]
 for t in datos_tabla_personal_information:
     tupla_consumible= []
     for dato in t:
@@ -64,9 +63,9 @@ for t in datos_tabla_personal_information:
             tupla_consumible.append(int(dato))
         except:
             tupla_consumible.append(dato)
-    nueva_lista.append(tuple(tupla_consumible))
+    nueva_lista_personal_information.append(tuple(tupla_consumible))
 #%%
-nueva_lista=[]
+nueva_lista_personal_information=[]
 for t in datos_tabla_personal_information:
     tupla_consumible= []
     for dato in t:
@@ -74,7 +73,11 @@ for t in datos_tabla_personal_information:
             tupla_consumible.append(float(dato))
         except:
             tupla_consumible.append(dato)
-    nueva_lista.append(tuple(tupla_consumible))
+    nueva_lista_personal_information.append(tuple(tupla_consumible))
+nueva_lista_personal_information
+#%%
+bdd.convertir_float(datos_tabla_personal_information)
+
 #%%
 # TABLA work_experience
 datos_tabla_work_experience = list(set(zip(dfcarga['employee_number'].values, dfcarga['num_companies_worked'].values, dfcarga['total_working_years'].values, dfcarga['years_at_company'].values, dfcarga['years_since_last_promotion'].values, dfcarga['years_in_current_role'].values,dfcarga['years_with_curr_manager'].values))) 
@@ -119,7 +122,7 @@ for t in datos_tabla_working_conditions:
 print(nueva_lista_workconditions)
 #%%
 # TABLA employee_satisfaction
-datos_tabla_employee_satisfaction = list(set(zip(dfcarga['employee_number'].values, dfcarga['environment_satisfaction'].values, dfcarga['job_satisfaction'].values, dfcarga['performance_rating'].values, dfcarga['relationship_satisfaction'].values, dfcarga['work_life_balance'].values, dfcarga['job_involvement'], dfcarga['attrition'].values))) 
+datos_tabla_employee_satisfaction = list(set(zip(dfcarga['employee_number'].values, dfcarga['environment_satisfaction'].values, dfcarga['job_satisfaction'].values, dfcarga['performance_rating'].values, dfcarga['relationship_satisfaction'].values, dfcarga['work_life_balance'].values, dfcarga['job_involvement']))) 
 #%%
 nueva_lista_satisfaction=[]
 for t in datos_tabla_employee_satisfaction:
@@ -131,14 +134,51 @@ for t in datos_tabla_employee_satisfaction:
             tupla_consumible.append(dato)
     nueva_lista_satisfaction.append(tuple(tupla_consumible))
 #%%
-print(nueva_lista_satisfaction)
+nueva_lista_satisfaction=[]
+for t in datos_tabla_employee_satisfaction:
+    tupla_consumible= []
+    for dato in t:
+        try:
+            tupla_consumible.append(float(dato))
+        except:
+            tupla_consumible.append(dato)
+    nueva_lista_satisfaction.append(tuple(tupla_consumible))
 #%%
 # TABLA jobrole_information
-datos_tabla_jobrole_information = list(set(zip(dfcarga['employee_number'].values, dfcarga['job_role'].values, dfcarga['department'].values))) 
-
+datos_tabla_jobrole_information = list(set(zip(dfcarga['employee_number'].values, dfcarga['job_level'].values, dfcarga['job_role'].values, dfcarga['department'].values))) 
+#%%
+nueva_lista_jobrole=[]
+for t in datos_tabla_jobrole_information:
+    tupla_consumible= []
+    for dato in t:
+        try:
+            tupla_consumible.append(int(dato))
+        except:
+            tupla_consumible.append(dato)
+    nueva_lista_jobrole.append(tuple(tupla_consumible))
+#%%
+nueva_lista_jobrole=[]
+for t in datos_tabla_jobrole_information:
+    tupla_consumible= []
+    for dato in t:
+        try:
+            tupla_consumible.append(float(dato))
+        except:
+            tupla_consumible.append(dato)
+    nueva_lista_jobrole.append(tuple(tupla_consumible))
+#%%
 # TABLA salary_information
-datos_tabla_salary_information = list(set(zip(dfcarga['monthly_income'].values, dfcarga['percent_salary_hike'].values, dfcarga['training_times_last_year'].values, dfcarga['stock_option_level'].values, dfcarga['monthly_rate'].values))) 
-
+datos_tabla_salary_information = list(set(zip(dfcarga['employee_number'].values, dfcarga['monthly_income'].values, dfcarga['percent_salary_hike'].values, dfcarga['training_times_last_year'].values, dfcarga['stock_option_level'].values, dfcarga['monthly_rate'].values))) 
+#%%
+nueva_lista_salary=[]
+for t in datos_tabla_salary_information:
+    tupla_consumible= []
+    for dato in t:
+        try:
+            tupla_consumible.append(float(dato))
+        except:
+            tupla_consumible.append(dato)
+    nueva_lista_salary.append(tuple(tupla_consumible))
 
 # Insertar los datos
 #%%
@@ -153,7 +193,7 @@ bdd.insertar_datos(query.query_insertar_gender, "Mysql.2440", 'human_resources_A
 bdd.insertar_datos(query.query_insertar_marital_status, "Mysql.2440", 'human_resources_ABC_corporation', datos_tabla_marital_status)
 #%%
 # Insertar datos en TABLA personal_information
-bdd.insertar_datos(query.query_insertar_personal_information, "Mysql.2440", 'human_resources_ABC_corporation', nueva_lista)
+bdd.insertar_datos(query.query_insertar_personal_information, "Mysql.2440", 'human_resources_ABC_corporation', nueva_lista_personal_information)
 #%%
 # Insertar datos en TABLA work_experience
 bdd.insertar_datos(query.query_insertar_work_experience, "Mysql.2440", 'human_resources_ABC_corporation', nueva_lista_workexperience)
@@ -165,10 +205,10 @@ bdd.insertar_datos(query.query_insertar_working_conditions, "Mysql.2440", 'human
 bdd.insertar_datos(query.query_insertar_employee_satisfaction, "Mysql.2440", 'human_resources_ABC_corporation', nueva_lista_satisfaction)
 #%%
 # Insertar datos en TABLA jobrole_information
-bdd.insertar_datos(query.query_insertar_jobrole_information, "Mysql.2440", 'human_resources_ABC_corporation', datos_tabla_jobrole_information)
-
+bdd.insertar_datos(query.query_insertar_jobrole_information, "Mysql.2440", 'human_resources_ABC_corporation', nueva_lista_jobrole)
+#%%
 # Insertar datos en TABLA salary_information
-bdd.insertar_datos(query.query_insertar_salary_information, "Mysql.2440",'human_resources_ABC_corporation', datos_tabla_salary_information)
+bdd.insertar_datos(query.query_insertar_salary_information, "Mysql.2440",'human_resources_ABC_corporation', nueva_lista_salary)
 
 
 # %%

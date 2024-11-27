@@ -243,29 +243,32 @@ def fill_null(df,column, concept):
     df[column] = df[column].fillna(concept)
     return 
 
-def marital_status(dataframe, column, value):
+def limpiar_maritalstatus(dato):
+    """
+    Limpia y normaliza un valor de entrada, corrigiendo errores tipográficos comunes y convirtiendo el texto a minúsculas.
     
-    '''Corrects and standardizes marital status values.
-
-    This function checks if the input marital status value is incorrectly spelled as 'Marreid'.
-    If so, it renames it to 'married'. For other values, it converts the input to lowercase.
-    If an error occurs during processing, the function returns NaN.
-
-    Parameters:
-    value (str or any): The marital status value to be processed. It can be a string or any other data type.
-
+    Si el valor de entrada es el error tipográfico 'Marreid', lo reemplaza por 'married'. 
+    Si el valor no es 'Marreid', convierte el valor a minúsculas si es una cadena de texto.
+    En caso de que ocurra un error (por ejemplo, si el valor no es una cadena ni un valor esperado), 
+    devuelve `np.nan`.
+    
+    Args:
+    - dato (str, int, float, etc.): El valor que se va a limpiar o normalizar.
+    
     Returns:
-    str or np.nan: Returns the corrected marital status as a string, or NaN if an error occurs.'''
-
+    - str: El valor normalizado (en minúsculas o corregido).
+    - np.nan: Si ocurre un error en el procesamiento del valor.
+    
+    """
+    #def marital_status (dato):
     try:
-        if value == 'Marreid':
-            return value.rename(columns= {'Marreid': 'married'})
 
+        if dato == 'Marreid':
+            return dato.rename(columns= {'Marreid': 'married'})
         else:
-            return str(value).lower()
+            return str(dato).lower()
     except:
-        dataframe[column] = dataframe[column].fillna("other")
-        return 
+        return np.nan 
 
 def assign_departament(dataframe, rolejob, dict_department, column_roledepartment):
     # Limpiamos la columna 'jobrole' de espacios y le hacemos un lower, ya que no estaba reconociendo las claves y es posible que hubiera algún espacio
@@ -309,3 +312,23 @@ def replace_nodata(dataframe,column, value):
 
     dataframe[column] = dataframe[column].replace("no data", value)
     return
+
+def convertir_a_int(dato):
+    """
+    Convierte un dato a entero, manejando los valores nulos (NaN o None).
+
+    Args:
+    - dato: El valor que se va a convertir (puede ser un número, cadena o NaN/None).
+
+    Returns:
+    - int: El valor convertido a entero, o NaN/None si el valor original es nulo.
+    """
+    try:
+        # Si el dato es nulo, devolverlo tal cual
+        if pd.isna(dato):  # También cubre el caso de None y NaN
+            return dato
+        # Intentamos convertir el dato a entero
+        return int(dato)
+    except (ValueError, TypeError):
+        # Si la conversión falla (por ejemplo, el dato es una cadena no numérica)
+        return np.nan 

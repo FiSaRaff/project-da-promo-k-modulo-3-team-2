@@ -19,6 +19,9 @@ df["age"] = sp.age(df["datebirth"])
 print("se corrigen las columnas cuyos valores tienen ',' en vez de '.' y terminan en $")
 
 sp.replace_dot_worklikebalance("worklifebalance")
+sp.replace_dot_worklikebalance("yearsincurrentrole")
+
+df["yearsincurrentrole"] = df["yearsincurrentrole"].apply(sp.convertir_a_int)
 
 for columna in va.list_column_dot:
      df[columna] = df[columna].apply(sp.replace_dot)
@@ -51,12 +54,12 @@ print("extraemos los hourlyrate que faltan de la columna 'dailyrate'")
 df['hourlyrate'] = df.apply(lambda row: row['dailyrate'] / 8, axis = 1)
 
 print("estandarizamos valores de la columna 'maritalestatus' y conservamos los nulos que tiene")
-df['maritalstatus'] = df['maritalstatus'].apply(sp.marital_status)
+df['maritalstatus'] = df['maritalstatus'].apply(sp.limpiar_maritalstatus)
 
 print("después de preguntar y confirmar los nulos de 2 columnas lo cambiamos por el dato correcto")
 sp.fill_null(df, "businesstravel", "non-travel")
 sp.fill_null(df, "standardhours", "Full Time")
-sp.fill_null(df, "performancerating", "not rated")
+sp.fill_null(df, "maritalstatus", "other")
 
 print("redondeamos el contenido de las columnas con valores económicos")
 for column in va.list_round:
@@ -84,7 +87,7 @@ df["satisfaction"] = np.where(df["jobsatisfaction"] < 3, "not satisfied", "satis
 
 print("cambiamos el orden de las columnas y el nombre")
 df=df[va.new_order]
-df.columns = ['employee_number','attrition','job_level', 'job_role','department','monthly_income','salary','percent_salary_hike','training_times_last_year','stock_option_level','hourly_rate','daily_rate','monthly_rate','standard_hours','overtime','business_travel','distance_from_home','remote_work','environment_satisfaction','job_involvement','job_satisfaction','satisfaction', 'performance_rating','relationship_satisfaction','work_life_balance','date_birth','age','gender','marital_status','education', 'education_field','num_companies_worked','total_working_years','years_at_company','years_since_last_promotion','years_with_curr_manager']
+df.columns = ['employee_number','attrition','job_level', 'job_role','department','monthly_income','salary','percent_salary_hike','training_times_last_year','stock_option_level','hourly_rate','daily_rate','monthly_rate','standard_hours','overtime','business_travel','distance_from_home','remote_work','environment_satisfaction','job_involvement','job_satisfaction','satisfaction', 'performance_rating','relationship_satisfaction','work_life_balance','date_birth','age','gender','marital_status','education', 'education_field','num_companies_worked','total_working_years','years_at_company','years_in_current_role','years_since_last_promotion','years_with_curr_manager']
 
 
 print("guardar csv con cambios hechos")

@@ -17,6 +17,6 @@ dict_department = {'healthcare representative': 'research & development',
        'human resources': 'human resources',
        'sales representative': 'sales'}
 
-list_drop = ["sameasmonthlyincome", "over18", "numberchildren", "employeecount", "yearsincurrentrole", "roledepartament", "department"]
+list_drop = ["sameasmonthlyincome", "over18", "numberchildren", "employeecount", "roledepartament", "department"]
 
-new_order = ['employeenumber','attrition','joblevel', 'jobrole','department','monthlyincome','salary','percentsalaryhike','trainingtimeslastyear','stockoptionlevel','hourlyrate','dailyrate','monthlyrate','standardhours','overtime','businesstravel','distancefromhome','remotework','environmentsatisfaction','jobinvolvement','jobsatisfaction','satisfaction','performancerating','relationshipsatisfaction','worklifebalance','datebirth','age','gender','maritalstatus','education', 'educationfield','numcompaniesworked','totalworkingyears','yearsatcompany','yearssincelastpromotion','yearswithcurrmanager']
+new_order = ['employeenumber','attrition','joblevel', 'jobrole','department','monthlyincome','salary','percentsalaryhike','trainingtimeslastyear','stockoptionlevel','hourlyrate','dailyrate','monthlyrate','standardhours','overtime','businesstravel','distancefromhome','remotework','environmentsatisfaction','jobinvolvement','jobsatisfaction','satisfaction','performancerating','relationshipsatisfaction','worklifebalance','datebirth','age','gender','maritalstatus','education', 'educationfield','numcompaniesworked','totalworkingyears','yearsatcompany', 'yearsincurrentrole', 'yearssincelastpromotion','yearswithcurrmanager']
