@@ -1,9 +1,15 @@
-# project-da-promo-k-modulo-3-team-2
-
 # Proyecto 3: 
 
 # ¿Hasta que el burnout nos separe?
 ## (o cómo los datos pueden crear relaciones laborales estables y felices en ABC Corporation)
+
+## Tabla de Contenidos
+1. [Resumen](#resumen)
+2. [Fases del Proyecto](#Fases-del-Proyecto)
+3. [Los Datos](#Los-Datos)
+4. [Objetivos](#Objetivos)
+5. [Entregables técnicos](#Entregables-técnicos)
+6. [Autora](#autora)
 
 ## 1. Resumen:
 
@@ -96,4 +102,18 @@ Las variables del conjunto de datos incluyen información personal, salarial, sa
 - Una carpeta de img con todos los gráficos que se han llevado a cabo durante la ejecución del proyecto. 
 - Una carpeta de src con un archivo .py llamado "soporte" con las funciones utilizadas y otra llamado "variables" con las nuevas variables creadas para su desarrollo. 
 - Por último, este README que sintetiza el propósito y contenido del proyecto.
+
+  ## 7. Autoras:
+
+* Patricia Sainz-Pardo Caraballo - Estudiante de Adalab. Curso Analista de Datos. Promo K.
+* Perfil de **GitHub**: [@psainzpc](https://github.com/psainzpc)
+  
+* Elena Durán Llanos - Estudiante de Adalab. Curso Analista de Datos. Promo K.
+* Perfil de **GitHub**: [@2l2na](https://github.com/2l2na)
+
+* Fiona Sánchez Rafferti- Estudiante de Adalab. Curso Analista de Datos. Promo K.
+* Perfil de **GitHub**: [FiSaRaff](https://github.com/FiSaRaff)
+
+* Marina Gascó Caballero - Estudiante de Adalab. Curso Analista de Datos. Promo K.
+* Perfil de **GitHub**: [marinagasco](https://github.com/marinagasco)
 
