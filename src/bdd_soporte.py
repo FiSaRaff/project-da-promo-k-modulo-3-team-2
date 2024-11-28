@@ -162,19 +162,26 @@ def convertir_int(lista_tuplas):
     
     return datos_tabla_caract_def
 
-def convertir_int64_a_int(df):
-    """
-    Convierte todas las columnas de tipo 'int64' en el DataFrame a 'int' de Python.
+def int_sql (datos):
+    nueva_lista=[]
+    for t in datos:
+        tupla_consumible= []
+        for dato in t:
+            try:
+                tupla_consumible.append(int(dato))
+            except:
+                tupla_consumible.append(dato)
+        nueva_lista.append(tuple(tupla_consumible))
+    return nueva_lista
 
-    Args:
-    - df (pd.DataFrame): El DataFrame con las columnas que pueden tener tipo 'int64'.
-
-    Returns:
-    - pd.DataFrame: El DataFrame con las columnas 'int64' convertidas a 'int' de Python.
-    """
-    # Seleccionar las columnas de tipo 'int64'
-    for col in df.select_dtypes(include=['int64']).columns:
-        # Convertir cada columna 'int64' a 'int' de Python
-        df[col] = df[col].astype(int)
-    
-    return df
+def float_sql (datos):
+    nueva_lista=[]
+    for t in datos:
+        tupla_consumible= []
+        for dato in t:
+            try:
+                tupla_consumible.append(float(dato))
+            except:
+                tupla_consumible.append(dato)
+        nueva_lista.append(tuple(tupla_consumible))
+    return nueva_lista

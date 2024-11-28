@@ -332,3 +332,4 @@ def convertir_a_int(dato):
     except (ValueError, TypeError):
         # Si la conversión falla (por ejemplo, el dato es una cadena no numérica)
         return np.nan 
+    
