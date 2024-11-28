@@ -58,9 +58,16 @@ Automatización del proceso de:
 
 Presentación de un informe con visualizaciones en Python, destacando:
 
+- Confirmación de hipótesis.
 - Tendencias relevantes.
 - Áreas de mejora.
 - Recomendaciones estratégicas.
+
+### Fas 7: Definición de arquetipos: 
+
+- Un día en la vida de los 4 arquetipos.
+- Mapping de posicionamiento de los empleados.
+- Plan de acción. 
 
 ## 3. Los Datos:
    
